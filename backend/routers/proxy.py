@@ -32,6 +32,11 @@ def proxy_restart(db: Session = Depends(get_db)):
     return {"success": ok, **mihomo.status()}
 
 
+@router.get("/logs")
+def proxy_logs():
+    return {"logs": mihomo.logs()}
+
+
 @router.post("/generate")
 def regenerate_config(db: Session = Depends(get_db)):
     config = generate_config(db)
