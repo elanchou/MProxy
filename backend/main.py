@@ -13,10 +13,11 @@ app.add_middleware(
 )
 
 from backend.database import engine, Base
-from backend.routers import subscriptions
+from backend.routers import subscriptions, nodes
 
 Base.metadata.create_all(bind=engine)
 app.include_router(subscriptions.router)
+app.include_router(nodes.router)
 
 
 @app.get("/api/health")
