@@ -1,0 +1,10 @@
+services:
+  mproxy:
+    build: .
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+      - "7901-8100:7901-8100"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
