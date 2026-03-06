@@ -12,6 +12,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from backend.database import engine, Base
+from backend.routers import subscriptions
+
+Base.metadata.create_all(bind=engine)
+app.include_router(subscriptions.router)
+
 
 @app.get("/api/health")
 async def health():
