@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 ARG TARGETARCH
-RUN ARCH=$(case ${TARGETARCH} in amd64) echo "amd64";; arm64) echo "arm64";; *) echo "amd64";; esac) && \
+RUN ARCH=$(case ${TARGETARCH} in amd64) echo "amd64-compatible";; arm64) echo "arm64";; *) echo "amd64-compatible";; esac) && \
     wget -O /tmp/mihomo.gz "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.0/mihomo-linux-${ARCH}-v1.19.0.gz" && \
     gzip -d /tmp/mihomo.gz && \
     mv /tmp/mihomo /app/mihomo && \
