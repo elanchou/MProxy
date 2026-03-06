@@ -15,6 +15,7 @@
 </template>
 
 <style>
+@reference "tailwindcss";
 .nav-link {
   @apply text-sm text-gray-400 hover:text-gray-100 transition-colors;
 }

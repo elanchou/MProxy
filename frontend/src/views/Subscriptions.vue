@@ -91,6 +91,7 @@ onMounted(load)
 </script>
 
 <style>
+@reference "tailwindcss";
 .card { @apply bg-gray-900 rounded-lg border border-gray-800 p-4; }
 .btn { @apply px-4 py-1.5 rounded text-sm font-medium text-white transition-colors disabled:opacity-50; }
 .input { @apply bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm text-gray-100 focus:outline-none focus:border-indigo-500; }
