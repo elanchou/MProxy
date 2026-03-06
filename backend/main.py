@@ -1,6 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pathlib import Path
 
 app = FastAPI(title="MProxy", version="0.1.0")
@@ -47,4 +48,11 @@ async def health():
 
 dist = Path(__file__).resolve().parent.parent / "frontend" / "dist"
 if dist.exists():
-    app.mount("/", StaticFiles(directory=str(dist), html=True), name="static")
+    app.mount("/assets", StaticFiles(directory=str(dist / "assets")), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_spa(request: Request, full_path: str):
+        file_path = dist / full_path
+        if file_path.is_file():
+            return FileResponse(file_path)
+        return FileResponse(dist / "index.html")
